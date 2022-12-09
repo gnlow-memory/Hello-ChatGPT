@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <title>Block Programming Language</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="400" height="300"></canvas>
+  <script>
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
+    let variable8940 = 0;
+
+    async function whenRunButtonClick() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, 10, 10);
+      while (true) {
+        ctx.translate(variable8940, 0);
+        ctx.fillRect(0, 0, 10, 10);
+        variable8940 *= 0.9;
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+    }
+
+    function whenSomeKeyPressed(event) {
+      let key = event.keyCode;
+      if (key == 37) {
+        variable8940 = -5;
+      } else if (key == 39) {
+        variable8940 = 5;
+      }
+    }
+
+    window.addEventListener("keydown", whenSomeKeyPressed);
+    whenRunButtonClick();
+  </script>
+</body>
+</html>
